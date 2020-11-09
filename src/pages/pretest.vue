@@ -1,17 +1,17 @@
 <template>
   <q-page>
-    <placement-pc v-if="$q.platform.is.desktop"></placement-pc>
-    <placement-mobile v-if="$q.platform.is.mobile"></placement-mobile>
+    <pretest-pc v-if="$q.platform.is.desktop"></-pc>
+    <pretest-mobile v-if="$q.platform.is.mobile"></-mobile>
   </q-page>
 </template>
 
 <script>
-import placementPc from "../components/placementPc.vue";
-import placementMobile from "../components/placementMobile.vue";
+import pretestPc from "../components/pretestPc.vue";
+import pretestMobile from "../components/pretestMobile.vue";
 export default {
   components: {
-    placementPc,
-    placementMobile
+    pretestPc,
+    pretestMobile
   }
 };
 </script>

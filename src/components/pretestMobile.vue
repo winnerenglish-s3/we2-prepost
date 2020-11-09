@@ -7,8 +7,8 @@
         </div>
         <!-- หลอดเขียว -->
         <div
-          class="borderPercent colorPercent relative-position"
-          style="width:680px;height:22px;padding:2px"
+          class="brx borderPercent colorPercent relative-position"
+          style="width:165px;height:22px;padding:2px"
         >
           <div
             style="margin-left:1px"
@@ -23,28 +23,24 @@
           ></q-img>
         </div>
       </div>
-      <div class="relative-position">
-        <q-img
-          src="../../public/images/title-placement.png"
-          style="width:830px"
-        >
-          <span align="left" class="q-mt-sm q-pt-md q-ml-xl block">
+      <div v-if="isBox1 == true" class="relative-position">
+        <q-img src="../../public/images/title-m.png" style="width:320px">
+          <span align="left" class="q-mt-sm q-pt-md q-ml-lg block">
             Choose the past simple of the following verb.
           </span>
-          <span align="left" class="q-mt-sm q-ml-xl block"
+          <span align="left" class="q-mt-sm q-ml-lg block"
             >เลือกริยาช่องที่ 2 ของคำกริยาต่อไปนี้</span
           >
         </q-img>
-        <div style="margin-left:-480px" class="q-mt-md" align="center">
+        <div class="q-mt-md" align="center">
           The White House is the home of the American ____________ .
         </div>
-        <div class="q-mt-md">
+        <div class="q-mt-lg">
           <div>
             <q-img
               @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
               ><span align="left" class="block  q-ml-lg q-mt-md">
                 The girl sings the song beautifully.
               </span></q-img
@@ -53,9 +49,8 @@
           <div class="q-my-md">
             <q-img
               @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
               ><span align="left" class="block  q-ml-lg q-mt-md"
                 >poetry</span
               ></q-img
@@ -64,9 +59,8 @@
           <div class="q-mb-md">
             <q-img
               @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
               ><span align="left" class="block  q-ml-lg q-mt-md"
                 >postry</span
               ></q-img
@@ -75,11 +69,66 @@
           <div>
             <q-img
               @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
               ><span align="left" class="block  q-ml-lg q-mt-md"
                 >postry</span
+              ></q-img
+            >
+          </div>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div v-if="isBox2 == true" class="relative-position">
+        <q-img src="../../public/images/title-m.png" style="width:320px">
+          <span align="left" class="q-mt-sm q-pt-md q-ml-lg block">
+            Choose the past simple of the following verb.
+          </span>
+          <span align="left" class="q-mt-sm q-ml-lg block"
+            >เลือกริยาช่องที่ 3
+          </span>
+        </q-img>
+        <div class="q-mt-md" align="center">
+          where you go ____________ .
+        </div>
+        <div class="q-mt-lg">
+          <div>
+            <q-img
+              @click="nextChoice()"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
+              ><span align="left" class="block  q-ml-lg q-mt-md">
+                The girl.
+              </span></q-img
+            >
+          </div>
+          <div class="q-my-md">
+            <q-img
+              @click="nextChoice()"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
+              ><span align="left" class="block  q-ml-lg q-mt-md"
+                >big c</span
+              ></q-img
+            >
+          </div>
+          <div class="q-mb-md">
+            <q-img
+              @click="nextChoice()"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
+              ><span align="left" class="block  q-ml-lg q-mt-md"
+                >market</span
+              ></q-img
+            >
+          </div>
+          <div>
+            <q-img
+              @click="nextChoice()"
+              src="../../public/images/placement-ch-m.png"
+              style="width:270px"
+              ><span align="left" class="block  q-ml-lg q-mt-md"
+                >school</span
               ></q-img
             >
           </div>
@@ -88,9 +137,9 @@
     </div>
     <!-- ---------------------------dialog------------------------ -->
     <q-dialog v-model="dialogTimeOut">
-      <q-card flat class="bg-transparent" style="width:320px">
+      <q-card flat class="bg-transparent container-login">
         <q-card-section class="bg-transparent text-dark no-padding">
-          <q-img src="../../public/images/timeOut.png" style="width:320px">
+          <q-img src="../../public/images/timeOut.png">
             <div class="absolute-center bg-transparent full-width">
               <div
                 style="font-size:24px"
@@ -129,11 +178,13 @@ export default {
     return {
       curentChoice: 1,
       totalChoice: 40,
-      allPercent: 670,
+      allPercent: 155,
       percent: 0,
       perOfChoice: "",
       clock: 0,
-      dialogTimeOut: false
+      dialogTimeOut: false,
+      isBox1: true,
+      isBox2: false
     };
   },
   methods: {
@@ -142,9 +193,15 @@ export default {
       this.percent = this.perOfChoice;
     },
     nextChoice() {
-      if (this.percent < 670) {
+      if (this.percent < 155) {
         this.percent = this.percent + this.perOfChoice;
         this.curentChoice++;
+        if (this.isBox1 == true) {
+          this.isBox1 = false;
+          setTimeout(() => {
+            this.isBox2 = true;
+          }, 150);
+        }
       } else {
         this.$router.push("/finish");
       }
@@ -177,25 +234,6 @@ export default {
 .percent {
   background-color: #64a74a;
   border-radius: 10px;
-}
-.btn-Active {
-  transform: scale(1);
-  transition-duration: 0.3s;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  cursor: pointer;
-}
-.btn-Active:hover:active {
-  transform: scale(0.95);
-  transition-duration: 0.2s;
-  -webkit-transform: scale(0.95);
-  -moz-transform: scale(0.95);
-}
-.btn-Active:hover {
-  transform: scale(1.1);
-  transition-duration: 0.3s;
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
 }
 // ปุ่มตกลง
 .btn-Alert {
