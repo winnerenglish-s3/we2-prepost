@@ -5,11 +5,11 @@
     align="center"
   >
     <div>
-      <div class="q-pb-lg">
+      <!-- <div class="q-pb-lg">
         <q-img style="width:320px" src="../../public/images/titlebar.png" />
-      </div>
+      </div>-->
       <div class="relative-position">
-        <q-img style="width:320px" src="../../public/images/box-login.png"></q-img>
+        <!-- <q-img style="width:320px" src="../../public/images/box-login.png"></q-img> -->
         <div style="width:270px" class="absolute-center">
           <div class="q-pb-sm">
             <q-input

@@ -7,8 +7,8 @@
       <div align="center">
         <div>
           <div class="relative-position">
-            <q-img v-if="type" style="width:250px" src="../../public/images/levelcard.png" />
-            <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />
+            <!-- <q-img v-if="type" style="width:250px" src="../../public/images/levelcard.png" />
+            <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />-->
             <div v-if="type" class="absolute-center f16 q-pb-lg">7</div>
           </div>
           <div>

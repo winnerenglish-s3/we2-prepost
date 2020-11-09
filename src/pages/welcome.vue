@@ -6,11 +6,11 @@
     >
       <div align="center">
         <div>
-          <q-img style="width:320px" src="../../public/images/titlebar.png" />
+          <q-img style="width:320px" src="../../public/images/title-pre.png" />
         </div>
         <div
           :style="$q.platform.is.desktop ? 'padding-top:30px;padding-bottom:47px':'padding-top:67px;padding-bottom:47px' "
-          class="q-py-lg"
+          class="q-py-lg text-white"
         >
           <div>คุณมีเวลา 40 นาทีในการทำ</div>
           <div>ถ้าพร้อมแล้วกด “เริ่ม” เพื่อทำกันได้เลย</div>
@@ -28,7 +28,7 @@
 export default {
   methods: {
     goto() {
-      this.$router.push("/placement");
+      this.$router.push("/pretest");
     },
   },
 };
