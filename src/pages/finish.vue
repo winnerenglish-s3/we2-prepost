@@ -2,7 +2,7 @@
   <q-page>
     <div
       :class="$q.platform.is.desktop ? 'flex flex-center':''"
-      :style="$q.platform.is.desktop ? 'padding-top:74px':'padding-top:76px' "
+      :style="$q.platform.is.desktop ? 'padding-top:74px':'padding-top:120px' "
     >
       <div align="center">
         <div>
