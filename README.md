@@ -1,4 +1,4 @@
-# Quasar App (we2-perpost)
+# Quasar App (we2-prepost)
 
 A Quasar Framework app
 
