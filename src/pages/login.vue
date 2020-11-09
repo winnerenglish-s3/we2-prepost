@@ -5,50 +5,28 @@
     align="center"
   >
     <div>
-      <!-- <div class="q-pb-lg">
-        <q-img style="width:320px" src="../../public/images/titlebar.png" />
-      </div>-->
-      <div class="relative-position">
-        <!-- <q-img style="width:320px" src="../../public/images/box-login.png"></q-img> -->
-        <div style="width:270px" class="absolute-center">
-          <div class="q-pb-sm">
-            <q-input
-              autofocus
-              label-color="brown-9"
-              class="userPwd q-px-md"
-              dense
-              borderless
-              v-model="data.user"
-              label="รหัสผู้ใช้งาน"
-            />
-          </div>
-          <div class="q-py-sm">
-            <q-input
-              label-color="brown-9"
-              class="userPwd q-px-md"
-              dense
-              borderless
-              @keypress="enter"
-              v-model="data.password"
-              label="รหัสผ่าน"
-              :type="isPwd ? 'password' : 'text'"
-            >
-              <template v-slot:append>
-                <q-icon
-                  color="dark"
-                  :name="isPwd ? 'visibility_off' : 'visibility'"
-                  class="cursor-pointer"
-                  @click="isPwd = !isPwd"
-                />
-              </template>
-            </q-input>
-          </div>
-          <!-- ปุ่มเข้าสู่ระบบ -->
-          <div class="q-mt-md">
-            <div @click="login()" class="btn-login"></div>
+      <q-dialog v-model="show">
+        <div class="relative-position" align="center">
+          <q-img style="width:320px" src="../../public/images/warning.png"></q-img>
+          <div style="width:270px" class="absolute-center">
+            <div style="padding-top:110px">
+              <div class="f24">อย่าลืม! สอบก่อนเรียน</div>
+              <div class="q-py-md" style="padding-bottom:60px">
+                <div>คุณสามารถเข้าสอบก่อนเรียน</div>
+                <div>ได้ตั้งแต่วันนี้จนถึงวันที่ 16 พ.ค. 2563</div>
+              </div>
+            </div>
+            <div class="row q-pa-md">
+              <div class="col-6">
+                <div @click="closeBtn()" class="btn-close"></div>
+              </div>
+              <div class="col-6">
+                <div @click="goto()" class="btn-exam col-6"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </q-dialog>
     </div>
   </div>
 </template>
@@ -56,18 +34,18 @@
 <script>
 export default {
   data() {
-    return { isPwd: true, data: { user: "", password: "" } };
+    return {
+      show: true,
+      isPwd: true,
+      data: { user: "", password: "" },
+    };
   },
   methods: {
-    login() {
-      if (this.data.user == "admin" && this.data.password == "1234") {
-        this.$router.push("/welcome");
-      }
+    goto() {
+      this.$router.push("/welcome");
     },
-    enter(event) {
-      if (event.key === "Enter") {
-        this.login();
-      }
+    closeBtn() {
+      this.show = false;
     },
   },
 };
@@ -88,15 +66,29 @@ export default {
   font-size: 12px;
   color: #512a08;
 }
-.btn-login:hover {
-  background-image: url("../../public/images/hover.png");
+.btn-close:hover {
+  background-image: url("../../public/images/close-btn-mh.png");
   transform: scale(0.99);
   background-size: cover;
   cursor: pointer;
 }
 //ปุ่ม login
-.btn-login {
-  background-image: url("../../public/images/login-btn.png");
+.btn-close {
+  background-image: url("../../public/images/close-btn-m.png");
+  width: 100%;
+  height: 35px;
+  background-size: cover;
+}
+
+.btn-exam:hover {
+  background-image: url("../../public/images/exam-btn-h.png");
+  transform: scale(0.99);
+  background-size: cover;
+  cursor: pointer;
+}
+//ปุ่ม login
+.btn-exam {
+  background-image: url("../../public/images/exam-btn.png");
   width: 100%;
   height: 35px;
   background-size: cover;
