@@ -1,0 +1,69 @@
+<template>
+  <q-page>
+    <div
+      :class="$q.platform.is.desktop ? 'flex flex-center':''"
+      :style="$q.platform.is.desktop ? 'padding-top:74px':'padding-top:76px' "
+    >
+      <div align="center">
+        <div>
+          <div class="relative-position">
+            <q-img v-if="type" style="width:250px" src="../../public/images/levelcard.png" />
+            <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />
+            <div v-if="type" class="absolute-center f16 q-pb-lg">7</div>
+          </div>
+          <div>
+            <div class="f16 q-pb-lg q-py-md">จบแบบทดสอบวัดระดับ</div>
+            <div v-if="$q.platform.is.desktop">
+              <div v-if="type" class="q-pb-sm">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
+              <div
+                v-if="!type"
+                class="q-pb-sm"
+              >คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
+            </div>
+            <div v-else>
+              <div v-if="type">
+                <div>กรุณารอคุณครูผู้สอนตั้งค่าระดับการเรียน</div>
+                <div>และกลับเข้าสู่ระบบที่ Winner English</div>
+              </div>
+              <div v-if="!type">
+                <div>คุณสามารถตรวจสอบคะแนน</div>
+                <div>และระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ปุ่มปิด -->
+        <div style="width:200px" class="q-mt-lg">
+          <div @click="goto()" class="btn-start"></div>
+        </div>
+      </div>
+    </div>
+  </q-page>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      type: true,
+    };
+  },
+  methods: {},
+};
+</script>
+
+<style lang="scss" scoped>
+.btn-start:hover {
+  background-image: url("../../public/images/close-btn-h.png");
+  transform: scale(0.99);
+  background-size: cover;
+  cursor: pointer;
+}
+//ปุ่ม start
+.btn-start {
+  background-image: url("../../public/images/close-btn.png");
+  width: 100%;
+  height: 35px;
+  background-size: cover;
+}
+</style>
