@@ -19,12 +19,12 @@ const routes = [
         name: "welcome.vue"
       },
       {
-        path: "/mainPrepost:type?",
+        path: "/mainPrepost/:type?",
         component: () => import("pages/mainPrepost.vue"),
         name: "mainPrepost.vue"
       },
       {
-        path: "/finish:type?",
+        path: "/finish/:type?",
         component: () => import("pages/finish.vue"),
         name: "finish.vue"
       }
