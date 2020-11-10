@@ -1,8 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="bg-primary">
+    <q-header :class="type == 'pretest' ? 'bg-primary' : 'bg-positive'">
       <q-toolbar style="max-width:857px;width100%;margin:auto">
-        <div class="text-white f16">แบบสอบถามความพึงพอใจ</div>
+        <div class="text-white f16">แบบทดสอบวัดระดับ</div>
         <q-space></q-space>
         <div>
           <div v-if="$q.platform.is.desktop" class="q-pt-sm">
@@ -132,6 +132,7 @@ export default {
   components: { EssentialLink },
   data() {
     return {
+      type: "pretest",
       open: false,
       isCloseMusic: false,
       isCloseSound: false,
