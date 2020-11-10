@@ -32,7 +32,11 @@
             >เลือกริยาช่องที่ 2 ของคำกริยาต่อไปนี้</span
           >
         </q-img>
-        <div class="q-mt-md text-white" align="center">
+        <div
+          class="q-mt-md q-mx-lg text-white"
+          style="font-size:18px;width:320px"
+          align="left"
+        >
           The White House is the home of the American ____________ .
         </div>
         <div class="q-mt-lg">
@@ -88,8 +92,12 @@
             >เลือกริยาช่องที่ 3
           </span>
         </q-img>
-        <div class="q-mt-md" align="center">
-          where you go ____________ .
+        <div
+          class="q-mt-md q-mx-lg text-white"
+          style="font-size:18px;width:320px"
+          align="left"
+        >
+          The House is American ____________ .
         </div>
         <div class="q-mt-lg">
           <div>
@@ -177,7 +185,7 @@ export default {
   data() {
     return {
       curentChoice: 1,
-      totalChoice: 40,
+      totalChoice: 2,
       allPercent: 155,
       percent: 0,
       perOfChoice: "",
@@ -203,7 +211,7 @@ export default {
           }, 150);
         }
       } else {
-        this.$router.push("/finish");
+        this.dialogTimeOut = true;
       }
     },
     confirm() {
@@ -212,9 +220,6 @@ export default {
   },
   created() {
     this.processPercent();
-    if (this.clock == 0) {
-      this.dialogTimeOut = true;
-    }
   }
 };
 </script>
