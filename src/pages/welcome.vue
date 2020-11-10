@@ -1,15 +1,21 @@
 <template>
   <q-page>
     <div
-      :class="$q.platform.is.desktop ? 'flex flex-center':''"
-      :style="$q.platform.is.desktop ? 'padding-top:100px':'padding-top:125px' "
+      :class="$q.platform.is.desktop ? 'flex flex-center' : ''"
+      :style="
+        $q.platform.is.desktop ? 'padding-top:100px' : 'padding-top:125px'
+      "
     >
       <div align="center">
         <div>
           <q-img style="width:320px" src="../../public/images/title-pre.png" />
         </div>
         <div
-          :style="$q.platform.is.desktop ? 'padding-top:30px;padding-bottom:47px':'padding-top:67px;padding-bottom:47px' "
+          :style="
+            $q.platform.is.desktop
+              ? 'padding-top:30px;padding-bottom:47px'
+              : 'padding-top:67px;padding-bottom:47px'
+          "
           class="q-py-lg text-white"
         >
           <div>คุณมีเวลา 40 นาทีในการทำ</div>
@@ -28,9 +34,9 @@
 export default {
   methods: {
     goto() {
-      this.$router.push("/pretest");
-    },
-  },
+      this.$router.push("/mainPrePost");
+    }
+  }
 };
 </script>
 
