@@ -1,35 +1,46 @@
 <template>
   <q-page class="bg-pre">
     <div
-      :class="$q.platform.is.desktop ? 'flex flex-center' : ''"
-      :style="$q.platform.is.desktop ? 'padding-top:74px' : 'padding-top:120px'"
+      :class="$q.platform.is.desktop ? 'absolute-center' : ''"
+      :style="$q.platform.is.desktop ? '' : 'padding-top:120px'"
     >
       <div align="center">
         <div>
           <div class="relative-position">
-            <q-img v-if="type" style="width:250px" src="../../public/images/levelcard.png" />
-            <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />
+            <q-img
+              v-if="type"
+              style="width:250px"
+              src="../../public/images/levelcard.png"
+            />
+            <q-img
+              v-if="!type"
+              style="width:250px"
+              src="../../public/images/best.png"
+            />
             <div
               v-if="type"
               class="absolute-center textShadow f16 q-pb-lg text-white"
               style="font-size:32px"
-            >7</div>
+            >
+              7
+            </div>
           </div>
           <div class="text-white">
-            <div class="f16 q-pb-lg q-py-md q-pt-lg">จบแบบทดสอบวัดระดับ</div>
+            <div class="f20 q-pb-lg q-py-md q-pt-lg">จบแบบทดสอบวัดระดับ</div>
             <div v-if="$q.platform.is.desktop">
-              <div v-if="type" class="q-pb-sm">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
-              <div
-                v-if="!type"
-                class="q-pb-sm"
-              >คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
+              <div v-if="type" class="q-pb-sm f18">
+                กรุณากลับเข้าสู่ระบบที่ Winner English
+              </div>
+              <div v-if="!type" class="q-pb-sm">
+                คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English
+              </div>
             </div>
             <div v-else>
-              <div v-if="type">
+              <div v-if="type" class="f18">
                 <div>กรุณารอคุณครูผู้สอนตั้งค่าระดับการเรียน</div>
                 <div>และกลับเข้าสู่ระบบที่ Winner English</div>
               </div>
-              <div v-if="!type">
+              <div v-if="!type" class="f18">
                 <div>คุณสามารถตรวจสอบคะแนน</div>
                 <div>และระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
               </div>
@@ -49,10 +60,10 @@
 export default {
   data() {
     return {
-      type: true,
+      type: true
     };
   },
-  methods: {},
+  methods: {}
 };
 </script>
 
