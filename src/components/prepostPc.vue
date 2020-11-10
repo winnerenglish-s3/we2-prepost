@@ -1,6 +1,6 @@
 <template>
-  <q-page align="center">
-    <div class="" style="padding-top:20px">
+  <q-page align="center" class="bg-pre">
+    <div style="padding-top:20px">
       <div class="row justify-center items-center q-mb-md">
         <div class="q-mr-sm text-dropred f14 " style="width:40px">
           {{ curentChoice }}/{{ totalChoice }}

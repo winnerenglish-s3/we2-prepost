@@ -1,17 +1,17 @@
 <template>
   <q-page>
-    <pretest-pc v-if="$q.platform.is.desktop"></pretest-pc>
-    <pretest-mobile v-if="$q.platform.is.mobile"></pretest-mobile>
+    <prepost-pc v-if="$q.platform.is.desktop"></prepost-pc>
+    <prepost-mobile v-if="$q.platform.is.mobile"></prepost-mobile>
   </q-page>
 </template>
 
 <script>
-import pretestPc from "../components/pretestPc.vue";
-import pretestMobile from "../components/pretestMobile.vue";
+import prepostPc from "../components/prepostPc.vue";
+import prepostMobile from "../components/prepostMobile.vue";
 export default {
   components: {
-    pretestPc,
-    pretestMobile
+    prepostPc,
+    prepostMobile
   }
 };
 </script>
