@@ -1,5 +1,5 @@
 <template>
-  <q-page align="center">
+  <q-page align="center" class="bg-pre">
     <div class="" style="padding-top:20px">
       <div class="row justify-center items-center q-mb-md">
         <div class="q-mr-sm text-dropred f14 " style="width:40px">
