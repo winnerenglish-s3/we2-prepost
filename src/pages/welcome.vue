@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page class="bg-pre">
     <div
       :class="$q.platform.is.desktop ? 'flex flex-center' : ''"
       :style="
