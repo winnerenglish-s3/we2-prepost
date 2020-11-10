@@ -25,12 +25,19 @@
 }
 
 body {
-  background-image: url("../../public/images/bgs.png");
+  font-family: Sarabun;
+}
+.bg-pre {
+  background-image: url("../../public/images/bg-pre.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  font-family: Sarabun;
-  height: 100vh;
+}
+.bg-post {
+  background-image: url("../../public/images/bg-post.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .container-login {
