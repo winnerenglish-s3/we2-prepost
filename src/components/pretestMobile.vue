@@ -25,14 +25,14 @@
       </div>
       <div v-if="isBox1 == true" class="relative-position">
         <q-img src="../../public/images/title-m.png" style="width:320px">
-          <span align="left" class="q-mt-sm q-pt-md q-ml-lg block">
+          <span align="left" class="q-mt-sm q-pt-md q-ml-lg block ">
             Choose the past simple of the following verb.
           </span>
           <span align="left" class="q-mt-sm q-ml-lg block"
             >เลือกริยาช่องที่ 2 ของคำกริยาต่อไปนี้</span
           >
         </q-img>
-        <div class="q-mt-md" align="center">
+        <div class="q-mt-md text-white" align="center">
           The White House is the home of the American ____________ .
         </div>
         <div class="q-mt-lg">

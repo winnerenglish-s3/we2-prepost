@@ -32,7 +32,11 @@
             >เลือกริยาช่องที่ 2 ของคำกริยาต่อไปนี้</span
           >
         </q-img>
-        <div style="margin-left:-480px" class="q-mt-md" align="center">
+        <div
+          style="margin-left:-480px"
+          class="q-mt-md text-white"
+          align="center"
+        >
           The White House is the home of the American ____________ .
         </div>
         <div class="q-mt-md">

@@ -1,8 +1,8 @@
 <template>
-  <!-- <q-page>
-    <pretest-pc v-if="$q.platform.is.desktop"></-pc>
-    <pretest-mobile v-if="$q.platform.is.mobile"></-mobile>
-  </q-page>-->
+  <q-page>
+    <pretest-pc v-if="$q.platform.is.desktop"></pretest-pc>
+    <pretest-mobile v-if="$q.platform.is.mobile"></pretest-mobile>
+  </q-page>
 </template>
 
 <script>
@@ -11,8 +11,8 @@ import pretestMobile from "../components/pretestMobile.vue";
 export default {
   components: {
     pretestPc,
-    pretestMobile,
-  },
+    pretestMobile
+  }
 };
 </script>
 
