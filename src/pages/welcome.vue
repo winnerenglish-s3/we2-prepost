@@ -12,7 +12,7 @@
           :style="
             $q.platform.is.desktop
               ? 'padding-top:30px;padding-bottom:47px;font-size:20px'
-              : 'padding-top:67px;padding-bottom:47px'
+              : 'padding-top:50px;padding-bottom:47px'
           "
           class="q-py-lg text-white"
         >
