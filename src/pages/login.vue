@@ -7,7 +7,10 @@
     <div>
       <q-dialog v-model="show" persistent>
         <div class="relative-position" align="center">
-          <q-img style="width:320px" src="../../public/images/warning.png"></q-img>
+          <q-img
+            style="width:320px"
+            src="../../public/images/warning.png"
+          ></q-img>
           <div style="width:270px" class="absolute-center">
             <div style="padding-top:110px">
               <div class="f24">อย่าลืม! สอบก่อนเรียน</div>
@@ -35,9 +38,9 @@
 export default {
   data() {
     return {
-      show: true,
+      show: false,
       isPwd: true,
-      data: { user: "", password: "" },
+      data: { user: "", password: "" }
     };
   },
   methods: {
@@ -46,8 +49,8 @@ export default {
     },
     closeBtn() {
       this.show = false;
-    },
-  },
+    }
+  }
 };
 </script>
 
