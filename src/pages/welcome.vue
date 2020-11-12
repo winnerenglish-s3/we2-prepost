@@ -41,6 +41,11 @@ export default {
     goto() {
       this.$router.push("/mainPrePost");
     }
+  },
+  created() {
+    // tt = testtype
+    let type = this.$route.params.type;
+    this.$q.sessionStorage.set("tt", type);
   }
 };
 </script>
