@@ -36,8 +36,9 @@
           >
         </q-img>
         <div
-          style="margin-left:-480px"
-          class="q-mt-md text-white"
+          style="margin-left:-430px"
+          class="q-mt-md f16"
+          :class="type == 'pretest' ? 'test-white' : 'test-black'"
           align="center"
         >
           The White House is the home of the American ____________ .
@@ -131,6 +132,7 @@
 export default {
   data() {
     return {
+      type: this.$q.sessionStorage.getItem("tt"),
       curentChoice: 1,
       totalChoice: 40,
       allPercent: 670,
