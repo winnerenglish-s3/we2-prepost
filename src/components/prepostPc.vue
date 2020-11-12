@@ -156,9 +156,9 @@ export default {
   },
   created() {
     this.processPercent();
-    if (this.clock == 0) {
+    setTimeout(() => {
       this.dialogTimeOut = true;
-    }
+    }, 3000);
   }
 };
 </script>

@@ -63,7 +63,11 @@ export default {
       type: true
     };
   },
-  methods: {}
+  methods: {
+    goto() {
+      window.close();
+    }
+  }
 };
 </script>
 

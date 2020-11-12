@@ -1,12 +1,18 @@
 <template>
-  <q-page class="bg-pre">
+  <q-page :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'">
     <div
       :class="$q.platform.is.desktop ? 'absolute-center' : ''"
       :style="$q.platform.is.desktop ? '' : 'padding-top:125px'"
     >
       <div align="center">
-        <div>
+        <div v-if="$route.params.type == 'pretest'">
           <q-img style="width:320px" src="../../public/images/title-pre.png" />
+        </div>
+        <div v-else>
+          <q-img
+            style="width:320px"
+            src="../../public/images/posttest-sign.png"
+          />
         </div>
         <div
           :style="
@@ -14,7 +20,8 @@
               ? 'padding-top:30px;padding-bottom:47px;font-size:20px'
               : 'padding-top:50px;padding-bottom:47px'
           "
-          class="q-py-lg text-white"
+          class="q-py-lg "
+          :class="$route.params.type == 'pretest' ? 'text-white' : 'text-black'"
         >
           <div>คุณมีเวลา 40 นาทีในการทำ</div>
           <div>ถ้าพร้อมแล้วกด “เริ่ม” เพื่อทำกันได้เลย</div>
