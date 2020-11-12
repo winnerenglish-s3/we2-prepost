@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-pre">
+  <q-page :class="typeClass == 'pretest' ? 'bg-pre' : 'bg-post'">
     <div
       :class="$q.platform.is.desktop ? 'absolute-center' : ''"
       :style="$q.platform.is.desktop ? '' : 'padding-top:120px'"
@@ -25,7 +25,7 @@
               7
             </div>
           </div>
-          <div class="text-white">
+          <div :class="typeClass == 'pretest' ? 'text-white' : 'text-black'">
             <div class="f20 q-pb-lg q-py-md q-pt-lg">จบแบบทดสอบวัดระดับ</div>
             <div v-if="$q.platform.is.desktop">
               <div v-if="type" class="q-pb-sm f18">
@@ -60,6 +60,7 @@
 export default {
   data() {
     return {
+      typeClass: this.$q.sessionStorage.getItem("tt"),
       type: true
     };
   },
