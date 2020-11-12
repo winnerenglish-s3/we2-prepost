@@ -6,7 +6,7 @@
         <q-space></q-space>
         <div>
           <div class="q-pt-sm">
-            <q-img @click="back()" :src="logoutPic" style="width:40px" />
+            <q-img @click="logout()" :src="logoutPic" style="width:40px" />
           </div>
         </div>
       </q-toolbar>
@@ -33,7 +33,7 @@
               />
             </div>
             <div>
-              <q-img @click="back()" :src="logoutPic" style="width:40px" />
+              <q-img @click="logout()" :src="logoutPic" style="width:40px" />
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ export default {
     };
   },
   methods: {
-    back() {}
+    logout() {}
   }
 };
 </script>
