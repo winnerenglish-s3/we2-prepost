@@ -38,7 +38,7 @@
         <div
           style="margin-left:-430px"
           class="q-mt-md f16"
-          :class="type == 'pretest' ? 'test-white' : 'test-black'"
+          :class="type == 'pretest' ? 'text-white' : 'text-black'"
           align="center"
         >
           The White House is the home of the American ____________ .
@@ -92,7 +92,7 @@
       </div>
     </div>
     <!-- ---------------------------dialog------------------------ -->
-    <q-dialog v-model="dialogTimeOut">
+    <q-dialog v-model="dialogTimeOut" persistent="">
       <q-card flat class="bg-transparent" style="width:320px">
         <q-card-section class="bg-transparent text-dark no-padding">
           <q-img src="../../public/images/timeOut.png" style="width:320px">
@@ -152,17 +152,17 @@ export default {
         this.percent = this.percent + this.perOfChoice;
         this.curentChoice++;
       } else {
-        this.$router.push("/finish");
+        this.$router.push("/finish/" + this.type);
       }
     },
     confirm() {
-      this.$router.push("/finish");
+      this.$router.push("/finish/" + this.type);
     }
   },
   created() {
     this.processPercent();
     setTimeout(() => {
-      this.dialogTimeOut = true;
+      // this.dialogTimeOut = true;
     }, 3000);
   }
 };

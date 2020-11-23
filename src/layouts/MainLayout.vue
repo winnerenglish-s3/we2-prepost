@@ -1,14 +1,14 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header :class="type == 'pretest' ? 'bg-primary' : 'bg-positive'">
+    <q-header class="bg-primary">
       <q-toolbar style="max-width:857px;width100%;margin:auto">
-        <div class="text-white f16">แบบทดสอบวัดระดับ</div>
+        <div class="text-white f16">แบบทดสอบก่อนเรียน</div>
         <q-space></q-space>
-        <div>
+        <!-- <div>
           <div class="q-pt-sm">
             <q-img @click="logout()" :src="logoutPic" style="width:40px" />
           </div>
-        </div>
+        </div> -->
       </q-toolbar>
     </q-header>
     <!-- <q-header elevated class="bg-teal-5">
@@ -41,7 +41,11 @@
     </q-header>-->
 
     <q-page-container>
-      <router-view v-if="$q.platform.is.desktop" class="container" />
+      <router-view
+        v-if="$q.platform.is.desktop"
+        class="container"
+        :class="type == 'pretest' ? 'bg-pre' : 'bg-post'"
+      />
       <router-view v-if="$q.platform.is.mobile" />
     </q-page-container>
   </q-layout>
@@ -54,13 +58,16 @@ export default {
   components: { EssentialLink },
   data() {
     return {
-      type: "pretest",
+      type: this.$route.params.type,
       open: false,
       logoutPic: require("../../public/images/logout-icon.png")
     };
   },
   methods: {
     logout() {}
+  },
+  mounted() {
+    this.$q.sessionStorage.set("tt", this.$route.params.type);
   }
 };
 </script>

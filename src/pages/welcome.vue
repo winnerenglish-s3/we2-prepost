@@ -37,15 +37,20 @@
 
 <script>
 export default {
+  data() {
+    return {
+      type: ""
+    };
+  },
   methods: {
     goto() {
-      this.$router.push("/mainPrePost");
+      this.$router.push("/mainPrePost/" + this.type);
     }
   },
   created() {
     // tt = testtype
-    let type = this.$route.params.type;
-    this.$q.sessionStorage.set("tt", type);
+    this.type = this.$route.params.type;
+    this.$q.sessionStorage.set("tt", this.type);
   }
 };
 </script>

@@ -1,32 +1,22 @@
 const routes = [
   {
-    path: "/",
-    component: () => import("pages/login.vue"),
-    name: "login.vue"
-  },
-  {
-    path: "/",
+    path: "/:type",
     component: () => import("layouts/MainLayout.vue"),
     children: [
       {
-        path: "/",
-        component: () => import("pages/login.vue"),
-        name: "login.vue"
-      },
-      {
-        path: "/welcome/:type?",
+        path: "/:type",
         component: () => import("pages/welcome.vue"),
-        name: "welcome.vue"
+        name: "welcome"
       },
       {
-        path: "/mainPrepost/:type?",
+        path: "/mainPrepost/:type",
         component: () => import("pages/mainPrepost.vue"),
-        name: "mainPrepost.vue"
+        name: "mainPrepost"
       },
       {
-        path: "/finish/:type?",
+        path: "/finish/:type",
         component: () => import("pages/finish.vue"),
-        name: "finish.vue"
+        name: "finish"
       }
     ]
   },
