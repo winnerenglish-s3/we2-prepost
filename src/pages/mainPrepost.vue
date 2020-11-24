@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      isLoadData: true
+      isLoadData: false
     };
   },
   methods: {
