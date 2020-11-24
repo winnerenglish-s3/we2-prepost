@@ -8,11 +8,8 @@
         <div v-if="$route.params.type == 'pretest'">
           <q-img style="width:320px" src="../../public/images/title-pre.png" />
         </div>
-        <div v-else>
-          <q-img
-            style="width:320px"
-            src="../../public/images/posttest-sign.png"
-          />
+        <div class="q-px-md" v-else>
+          <q-img style="max-width:320px;width:100%" src="../../public/images/posttest-sign.png" />
         </div>
         <div
           :style="
@@ -20,7 +17,7 @@
               ? 'padding-top:30px;padding-bottom:47px;font-size:20px'
               : 'padding-top:50px;padding-bottom:47px'
           "
-          class="q-py-lg "
+          class="q-py-lg"
           :class="$route.params.type == 'pretest' ? 'text-white' : 'text-black'"
         >
           <div>คุณมีเวลา 40 นาทีในการทำ</div>
@@ -39,19 +36,19 @@
 export default {
   data() {
     return {
-      type: ""
+      type: "",
     };
   },
   methods: {
     goto() {
       this.$router.push("/mainPrePost/" + this.type);
-    }
+    },
   },
   created() {
     // tt = testtype
     this.type = this.$route.params.type;
     this.$q.sessionStorage.set("tt", this.type);
-  }
+  },
 };
 </script>
 

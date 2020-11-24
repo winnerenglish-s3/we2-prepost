@@ -7,33 +7,22 @@
       <div align="center">
         <div>
           <div class="relative-position">
-            <q-img
-              v-if="type"
-              style="width:250px"
-              src="../../public/images/levelcard.png"
-            />
-            <q-img
-              v-if="!type"
-              style="width:250px"
-              src="../../public/images/best.png"
-            />
+            <q-img v-if="type" style="width:250px" src="../../public/images/levelcard.png" />
+            <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />
             <div
               v-if="type"
               class="absolute-center textShadow f16 q-pb-lg text-white"
               style="font-size:32px"
-            >
-              7
-            </div>
+            >7</div>
           </div>
           <div :class="typeClass == 'pretest' ? 'text-white' : 'text-black'">
-            <div class="f20 q-pb-lg q-py-md q-pt-lg">จบแบบทดสอบวัดระดับ</div>
+            <div style="font-weight: bold;" class="f20 q-pb-lg q-py-md q-pt-lg">จบแบบทดสอบวัดระดับ</div>
             <div v-if="$q.platform.is.desktop">
-              <div v-if="type" class="q-pb-sm f18">
-                กรุณากลับเข้าสู่ระบบที่ Winner English
-              </div>
-              <div v-if="!type" class="q-pb-sm">
-                คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English
-              </div>
+              <div v-if="type" class="q-pb-sm f18">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
+              <div
+                v-if="!type"
+                class="q-pb-sm"
+              >คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
             </div>
             <div v-else>
               <div v-if="type" class="f18">
@@ -61,14 +50,14 @@ export default {
   data() {
     return {
       typeClass: this.$q.sessionStorage.getItem("tt"),
-      type: true
+      type: true,
     };
   },
   methods: {
     goto() {
       window.close();
-    }
-  }
+    },
+  },
 };
 </script>
 
