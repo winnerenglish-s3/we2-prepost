@@ -172,8 +172,8 @@ export default {
   created() {
     this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
     setTimeout(() => {
-      // this.dialogTimeOut = true;
-    }, 3000);
+      this.dialogTimeOut = true;
+    }, 5000);
   }
 };
 </script>
