@@ -6,16 +6,16 @@
     <div style="padding-top:20px">
       <div class="row justify-center items-center q-mb-md">
         <div class="q-mr-sm text-dropred f14 " style="width:40px">
-          {{ curentChoice }}/{{ totalChoice }}
+          {{ curentChoice }}/{{ prepostData.length }}
         </div>
-        <!-- หลอดเขียว -->
+        <!-- หลอดการทำข้อสอบ -->
         <div
           class="borderPercent colorPercent relative-position"
-          style="width:680px;height:22px;padding:2px"
+          style="width:44%;height:22px;padding:2px"
         >
           <div
             style="margin-left:1px"
-            :style="'width:' + percent + 'px'"
+            :style="'width:' + percent + '%'"
             class="percent full-height"
           ></div>
         </div>
@@ -26,66 +26,43 @@
           ></q-img>
         </div>
       </div>
-      <div class="relative-position">
+      <!-- วนข้อสอบ -->
+      <div v-if="isloadData" class="relative-position">
         <q-img src="../../public/images/title.png" style="width:830px">
+          <!-- คำอธิบายภาษาอังกฤษ -->
           <span align="left" class="q-mt-sm q-pt-md q-ml-xl block">
-            Choose the past simple of the following verb.
+            {{ prepostData[curentChoice - 1].instructioneng }}
           </span>
-          <span align="left" class="q-mt-sm q-ml-xl block"
-            >เลือกริยาช่องที่ 2 ของคำกริยาต่อไปนี้</span
-          >
+          <!-- คำอธิบายภาษาไทย -->
+          <span align="left" class="q-mt-sm q-ml-xl block">{{
+            prepostData[curentChoice - 1].instructionthai
+          }}</span>
         </q-img>
+        <!-- คำถาม -->
         <div
-          style="margin-left:-430px"
-          class="q-mt-md f16"
+          style="width:800px;margin:auto"
+          class="q-mt-md f16 container"
           :class="type == 'pretest' ? 'text-white' : 'text-black'"
-          align="center"
-        >
-          The White House is the home of the American ____________ .
-        </div>
-        <div class="q-mt-md">
-          <div>
+          align="left"
+          v-html="prepostData[curentChoice - 1].question"
+        ></div>
+        <!-- วน choices -->
+        <div class="q-mt-lg">
+          <div
+            class="q-my-md"
+            v-for="(item, index) in prepostData[curentChoice - 1].choices"
+            :key="index"
+          >
             <q-img
               @click="nextChoice()"
               class="btn-Active"
               src="../../public/images/placement-ch.png"
               style="width:518px"
-              ><span align="left" class="block  q-ml-lg q-mt-md">
-                The girl sings the song beautifully.
+            >
+              <!-- choices -->
+              <span align="left" class="block  q-ml-lg q-mt-md">
+                {{ item }}
               </span></q-img
-            >
-          </div>
-          <div class="q-my-md">
-            <q-img
-              @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >poetry</span
-              ></q-img
-            >
-          </div>
-          <div class="q-mb-md">
-            <q-img
-              @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >postry</span
-              ></q-img
-            >
-          </div>
-          <div>
-            <q-img
-              @click="nextChoice()"
-              class="btn-Active"
-              src="../../public/images/placement-ch.png"
-              style="width:518px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >postry</span
-              ></q-img
             >
           </div>
         </div>
@@ -129,38 +106,71 @@
 </template>
 
 <script>
+import { db } from "src/router";
 export default {
   data() {
     return {
-      type: this.$q.sessionStorage.getItem("tt"),
-      curentChoice: 1,
-      totalChoice: 40,
-      allPercent: 670,
-      percent: 0,
-      perOfChoice: "",
-      clock: 0,
-      dialogTimeOut: false
+      type: this.$q.sessionStorage.getItem("tt"), //เก็บว่าเป็น pre หรือ post
+      prepostData: "", //เก็บข้อมูลprepost จาก database
+      curentChoice: 1, //ข้อปัจจุบัน
+      percent: 0, //percent ในหลอด
+      perOfChoice: "", //percent แต่ละข้อ
+      clock: 0, // เวลา
+      dialogTimeOut: false, //เปิดปิด dialog นาฬิกา
+      isloadData: false //บอกว่าโหลดข้อมูลจาก Database เสร็จแล้ว
     };
   },
   methods: {
-    processPercent() {
-      this.perOfChoice = this.allPercent / this.totalChoice;
-      this.percent = this.perOfChoice;
-    },
-    nextChoice() {
-      if (this.percent < 670) {
-        this.percent = this.percent + this.perOfChoice;
-        this.curentChoice++;
+    //โหลดข้อมูล prepost จาก dataBase
+    loadPrePostData() {
+      let allData = [];
+      let dbRef;
+      if (this.$route.params.type == "pretest") {
+        dbRef = db
+          .collection("questionpool")
+          .doc("server")
+          .collection("practice")
+          .where("preTest", "==", true);
       } else {
-        this.$router.push("/finish/" + this.type);
+        dbRef = db
+          .collection("questionpool")
+          .doc("server")
+          .collection("practice")
+          .where("postTest", "==", true);
+      }
+      dbRef.get().then(data => {
+        console.log(data.size);
+        data.forEach(element => {
+          allData.push({ ...element.data(), id: element.id });
+        });
+
+        this.prepostData = allData;
+        this.isloadData = true;
+        this.processPercent();
+      });
+    },
+    //คำนวน percent
+    processPercent() {
+      this.perOfChoice = 100 / this.prepostData.length;
+    },
+    //กดทำข้อสอบข้อต่อไป
+    nextChoice() {
+      if (this.percent < 100) {
+        this.percent = this.percent + this.perOfChoice;
+        if (this.curentChoice != this.prepostData.length) {
+          this.curentChoice++;
+        } else {
+          this.$router.push("/finish/" + this.type);
+        }
       }
     },
+    // กดยืนยัน ใน Dialog
     confirm() {
       this.$router.push("/finish/" + this.type);
     }
   },
   created() {
-    this.processPercent();
+    this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
     setTimeout(() => {
       // this.dialogTimeOut = true;
     }, 3000);

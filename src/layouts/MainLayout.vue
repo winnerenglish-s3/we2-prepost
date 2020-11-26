@@ -2,7 +2,13 @@
   <q-layout view="lHh Lpr lFf">
     <q-header class="bg-primary">
       <q-toolbar style="max-width:857px;width100%;margin:auto">
-        <div class="text-white f16">แบบทดสอบก่อนเรียน</div>
+        <div
+          class="text-white f16"
+          v-if="$q.sessionStorage.getItem('tt') == 'pretest'"
+        >
+          แบบทดสอบก่อนเรียน
+        </div>
+        <div v-else>แบบทดสอบหลังเรียน</div>
         <q-space></q-space>
         <!-- <div>
           <div class="q-pt-sm">

@@ -3,7 +3,7 @@
     <div class="" style="padding-top:20px">
       <div class="row justify-center items-center q-mb-md">
         <div class="q-mr-sm text-dropred f14 " style="width:40px">
-          {{ curentChoice }}/{{ totalChoice }}
+          {{ curentChoice }}/{{ prepostData.length }}
         </div>
         <!-- หลอดเขียว -->
         <div
@@ -12,7 +12,7 @@
         >
           <div
             style="margin-left:1px"
-            :style="'width:' + percent + 'px'"
+            :style="'width:' + percent + '%'"
             class="percent full-height"
           ></div>
         </div>
@@ -23,121 +23,36 @@
           ></q-img>
         </div>
       </div>
-      <div v-if="isBox1 == true" class="relative-position">
+      <div v-if="isloadData" class="relative-position">
         <q-img src="../../public/images/title-m.png" style="width:320px">
-          <span align="left" class="q-mt-sm q-pt-md q-ml-lg block ">
-            Choose the past simple of the following verb.
+          <span align="left" class="q-mt-sm  q-ml-lg block">
+            {{ prepostData[curentChoice - 1].instructioneng }}
           </span>
-          <span align="left" class="q-mt-sm q-ml-lg block"
-            >เลือกริยาช่องที่ 2 ของคำกริยาต่อไปนี้</span
+          <span align="left" class="q-mt-xs q-ml-lg block">{{
+            prepostData[curentChoice - 1].instructionthai
+          }}</span>
+        </q-img>
+        <div
+          style="width:300px;margin:auto"
+          class="q-mt-md f16"
+          :class="type == 'pretest' ? 'text-white' : 'text-black'"
+          align="left"
+          v-html="prepostData[curentChoice - 1].question"
+        ></div>
+        <div class="q-mt-lg">
+          <div
+            class="q-my-md"
+            v-for="(item, index) in prepostData[curentChoice - 1].choices"
+            :key="index"
           >
-        </q-img>
-        <div
-          class="q-mt-md q-mx-lg text-white"
-          style="font-size:18px;width:320px"
-          align="left"
-        >
-          The White House is the home of the American ____________ .
-        </div>
-        <div class="q-mt-lg">
-          <div>
             <q-img
               @click="nextChoice()"
+              class="btn-Active"
               src="../../public/images/placement-ch-m.png"
               style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md">
-                The girl sings the song beautifully.
+              ><span align="left" class="block  q-ml-lg q-pa-xs">
+                {{ item }}
               </span></q-img
-            >
-          </div>
-          <div class="q-my-md">
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >poetry</span
-              ></q-img
-            >
-          </div>
-          <div class="q-mb-md">
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >postry</span
-              ></q-img
-            >
-          </div>
-          <div>
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >postry</span
-              ></q-img
-            >
-          </div>
-        </div>
-      </div>
-      <!-- 2 -->
-      <div v-if="isBox2 == true" class="relative-position">
-        <q-img src="../../public/images/title-m.png" style="width:320px">
-          <span align="left" class="q-mt-sm q-pt-md q-ml-lg block">
-            Choose the past simple of the following verb.
-          </span>
-          <span align="left" class="q-mt-sm q-ml-lg block"
-            >เลือกริยาช่องที่ 3
-          </span>
-        </q-img>
-        <div
-          class="q-mt-md q-mx-lg text-white"
-          style="font-size:18px;width:320px"
-          align="left"
-        >
-          The House is American ____________ .
-        </div>
-        <div class="q-mt-lg">
-          <div>
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md">
-                The girl.
-              </span></q-img
-            >
-          </div>
-          <div class="q-my-md">
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >big c</span
-              ></q-img
-            >
-          </div>
-          <div class="q-mb-md">
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >market</span
-              ></q-img
-            >
-          </div>
-          <div>
-            <q-img
-              @click="nextChoice()"
-              src="../../public/images/placement-ch-m.png"
-              style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-mt-md"
-                >school</span
-              ></q-img
             >
           </div>
         </div>
@@ -181,45 +96,74 @@
 </template>
 
 <script>
+import { db } from "src/router";
 export default {
   data() {
     return {
-      curentChoice: 1,
-      totalChoice: 2,
-      allPercent: 155,
-      percent: 0,
-      perOfChoice: "",
-      clock: 0,
-      dialogTimeOut: false,
-      isBox1: true,
-      isBox2: false
+      type: this.$q.sessionStorage.getItem("tt"), //เก็บว่าเป็น pre หรือ post
+      prepostData: "", //เก็บข้อมูลprepost จาก database
+      curentChoice: 1, //ข้อปัจจุบัน
+      percent: 0, //percent ในหลอด
+      perOfChoice: "", //percent แต่ละข้อ
+      clock: 0, // เวลา
+      dialogTimeOut: false, //เปิดปิด dialog นาฬิกา
+      isloadData: false //บอกว่าโหลดข้อมูลจาก Database เสร็จแล้ว
     };
   },
   methods: {
-    processPercent() {
-      this.perOfChoice = this.allPercent / this.totalChoice;
-      this.percent = this.perOfChoice;
-    },
-    nextChoice() {
-      if (this.percent < 155) {
-        this.percent = this.percent + this.perOfChoice;
-        this.curentChoice++;
-        if (this.isBox1 == true) {
-          this.isBox1 = false;
-          setTimeout(() => {
-            this.isBox2 = true;
-          }, 150);
-        }
+    //โหลดข้อมูล prepost จาก dataBase
+    loadPrePostData() {
+      let allData = [];
+      let dbRef;
+      if (this.$route.params.type == "pretest") {
+        dbRef = db
+          .collection("questionpool")
+          .doc("server")
+          .collection("practice")
+          .where("preTest", "==", true);
       } else {
-        this.dialogTimeOut = true;
+        dbRef = db
+          .collection("questionpool")
+          .doc("server")
+          .collection("practice")
+          .where("postTest", "==", true);
+      }
+      dbRef.get().then(data => {
+        console.log(data.size);
+        data.forEach(element => {
+          allData.push({ ...element.data(), id: element.id });
+        });
+
+        this.prepostData = allData;
+        this.isloadData = true;
+        this.processPercent();
+      });
+    },
+    //คำนวน percent
+    processPercent() {
+      this.perOfChoice = 100 / this.prepostData.length;
+    },
+    //กดทำข้อสอบข้อต่อไป
+    nextChoice() {
+      if (this.percent < 100) {
+        this.percent = this.percent + this.perOfChoice;
+        if (this.curentChoice != this.prepostData.length) {
+          this.curentChoice++;
+        } else {
+          this.$router.push("/finish/" + this.type);
+        }
       }
     },
+    // กดยืนยัน ใน Dialog
     confirm() {
-      this.$router.push("/finish");
+      this.$router.push("/finish/" + this.type);
     }
   },
   created() {
-    this.processPercent();
+    this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
+    setTimeout(() => {
+      this.dialogTimeOut = true;
+    }, 7000);
   }
 };
 </script>
