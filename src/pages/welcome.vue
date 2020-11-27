@@ -9,13 +9,13 @@
           <q-img style="width:320px" src="../../public/images/title-pre.png" />
         </div>
         <div class="q-px-md" v-else>
-          <q-img style="max-width:320px;width:100%" src="../../public/images/posttest-sign.png" />
+          <q-img style="width:320px" src="../../public/images/posttest-sign.png" />
         </div>
         <div
           :style="
             $q.platform.is.desktop
-              ? 'padding-top:30px;padding-bottom:47px;font-size:20px'
-              : 'padding-top:50px;padding-bottom:47px'
+              ? 'padding-top:30px;padding-bottom:41px;font-size:20px'
+              : 'padding-top:38px;padding-bottom:47px'
           "
           class="q-py-lg"
           :class="$route.params.type == 'pretest' ? 'text-white' : 'text-black'"

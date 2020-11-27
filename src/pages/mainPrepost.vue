@@ -16,17 +16,17 @@ import prepostMobile from "../components/prepostMobile.vue";
 export default {
   components: {
     prepostPc,
-    prepostMobile
+    prepostMobile,
   },
   data() {
     return {
-      isLoadData: false
+      isLoadData: false,
     };
   },
   methods: {
-    name() {}
+    name() {},
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 

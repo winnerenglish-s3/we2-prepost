@@ -1,5 +1,5 @@
 <template>
-  <q-page :class="typeClass == 'pretest' ? 'bg-pre' : 'bg-post'">
+  <q-page :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'">
     <div
       :class="$q.platform.is.desktop ? 'absolute-center' : ''"
       :style="$q.platform.is.desktop ? '' : 'padding-top:120px'"
@@ -11,25 +11,29 @@
             <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />
             <div
               v-if="type"
-              class="absolute-center textShadow f16 q-pb-lg text-white"
-              style="font-size:32px"
+              class="absolute-center textShadow text-white"
+              style="font-size:32px;padding-bottom:25px"
             >7</div>
           </div>
           <div :class="typeClass == 'pretest' ? 'text-white' : 'text-black'">
-            <div style="font-weight: bold;" class="f20 q-pb-lg q-py-md q-pt-lg">จบแบบทดสอบวัดระดับ</div>
-            <div v-if="$q.platform.is.desktop">
-              <div v-if="type" class="q-pb-sm f18">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
+            <div
+              style="font-weight: bold;"
+              :class="$q.platform.is.desktop ? 'f20' : 'f16'"
+              class="q-pb-lg q-py-md q-pt-lg"
+            >จบแบบทดสอบวัดระดับ</div>
+            <div class="f16" v-if="$q.platform.is.desktop">
+              <div v-if="type" class="q-pb-sm">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
               <div
                 v-if="!type"
                 class="q-pb-sm"
               >คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
             </div>
-            <div v-else>
-              <div v-if="type" class="f18">
+            <div class="f14" v-else>
+              <div v-if="type">
                 <div>กรุณารอคุณครูผู้สอนตั้งค่าระดับการเรียน</div>
                 <div>และกลับเข้าสู่ระบบที่ Winner English</div>
               </div>
-              <div v-if="!type" class="f18">
+              <div v-if="!type">
                 <div>คุณสามารถตรวจสอบคะแนน</div>
                 <div>และระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
               </div>

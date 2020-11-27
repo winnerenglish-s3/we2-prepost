@@ -1,10 +1,11 @@
 <template>
-  <q-page align="center" class="bg-pre">
+  <q-page align="center" :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'">
     <div style="padding-top:20px;">
       <div class="row justify-center items-center q-mb-md">
-        <div class="q-mr-sm text-dropred f14 " style="width:40px">
-          {{ curentChoice }}/{{ prepostData.length }}
-        </div>
+        <div
+          class="q-mr-sm text-dropred f14"
+          style="width:40px"
+        >{{ curentChoice }}/{{ prepostData.length }}</div>
         <!-- หลอดเขียว -->
         <div
           class="brx borderPercent colorPercent relative-position"
@@ -17,24 +18,25 @@
           ></div>
         </div>
         <div>
-          <q-img
-            src="../../public/images/clock.png"
-            style="width:110px;margin-top:-10px"
-          ></q-img>
+          <q-img src="../../public/images/clock.png" style="width:110px;margin-top:-10px"></q-img>
         </div>
       </div>
       <div v-if="isloadData" class="relative-position">
         <q-img src="../../public/images/title-m.png" style="width:320px;">
-          <span align="left" class="q-mt-sm  q-ml-lg block">
-            {{ prepostData[curentChoice - 1].instructioneng }}
-          </span>
-          <span align="left" class="q-mt-xs q-ml-lg block">{{
+          <span
+            align="left"
+            style="margin-top:25px"
+            class="q-mt-sm q-ml-lg block"
+          >{{ prepostData[curentChoice - 1].instructioneng }}</span>
+          <span align="left" class="q-mt-xs q-ml-lg block">
+            {{
             prepostData[curentChoice - 1].instructionthai
-          }}</span>
+            }}
+          </span>
         </q-img>
         <div
           style="width:300px;margin:20px auto"
-          class="f16 text-blue-grey-1"
+          class="f16"
           :class="type == 'pretest' ? 'text-white' : 'text-black'"
           align="left"
           v-html="prepostData[curentChoice - 1].question"
@@ -50,10 +52,11 @@
               class="btn-Active"
               src="../../public/images/placement-ch-m.png"
               style="width:270px"
-              ><span align="left" class="block  q-ml-lg q-pa-xs">
-                {{ item }}
-              </span></q-img
             >
+              <span class="block q-ml-lg q-pa-xs" align="left">
+                <div style="margin-top:12px">{{ item }}</div>
+              </span>
+            </q-img>
           </div>
         </div>
       </div>
@@ -68,15 +71,11 @@
                 style="font-size:24px"
                 align="center"
                 class="text-weight-bold text-dark relative-position q-px-md"
-              >
-                หมดเวลา !!!
-              </div>
+              >หมดเวลา !!!</div>
               <div
                 align="center"
                 class="text-dark f16 relative-position q-px-md q-mt-md"
-              >
-                ทำแบบทดสอบก่อนเรียน
-              </div>
+              >ทำแบบทดสอบก่อนเรียน</div>
             </div>
             <div
               style="width:100%;bottom:30px; z-index:1000"
@@ -107,7 +106,7 @@ export default {
       perOfChoice: "", //percent แต่ละข้อ
       clock: 0, // เวลา
       dialogTimeOut: false, //เปิดปิด dialog นาฬิกา
-      isloadData: false //บอกว่าโหลดข้อมูลจาก Database เสร็จแล้ว
+      isloadData: false, //บอกว่าโหลดข้อมูลจาก Database เสร็จแล้ว
     };
   },
   methods: {
@@ -128,9 +127,9 @@ export default {
           .collection("practice")
           .where("postTest", "==", true);
       }
-      dbRef.get().then(data => {
+      dbRef.get().then((data) => {
         console.log(data.size);
-        data.forEach(element => {
+        data.forEach((element) => {
           allData.push({ ...element.data(), id: element.id });
         });
 
@@ -157,20 +156,20 @@ export default {
     // กดยืนยัน ใน Dialog
     confirm() {
       this.$router.push("/finish/" + this.type);
-    }
+    },
   },
   created() {
     this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
     // setTimeout(() => {
     //   this.dialogTimeOut = true;
     // }, 7000);
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .colorPercent {
-  background-color: #ffffff;
+  background-color: #f8a58d;
   border-radius: 10px;
 }
 .borderPercent {
