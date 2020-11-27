@@ -4,6 +4,10 @@
   src: url("../../public/fonts/Sarabun-Regular.ttf");
 }
 
+body {
+  font-family: Sarabun;
+}
+
 .f12 {
   font-size: 12px;
 }
@@ -27,22 +31,25 @@
   border: 1px solid red;
 }
 
-body {
-  font-family: Sarabun;
-}
 .bg-pre {
   background-image: url("../../public/images/bg-pre.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
+  background-position: center;
 }
 .bg-post {
   background-image: url("../../public/images/bg-post.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 .container-login {
   width: 320px;
+}
+
+.container-main {
+  width: 850px;
+  margin: auto;
 }

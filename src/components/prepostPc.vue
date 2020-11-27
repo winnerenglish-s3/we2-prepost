@@ -4,22 +4,29 @@
     :class="$q.sessionStorage.getItem('tt') == 'pretest' ? 'bg-pre' : 'bg-post'"
   >
     <div style="padding-top:20px">
-      <div class="row justify-center items-center q-mb-md">
-        <div class="q-mr-sm text-dropred f14 " style="width:40px">
+      <div class="row items-center q-mb-md container-main">
+        <div
+          class="col-1 q-mr-sm text-dropred f14 "
+          align="left"
+          style="width:45px"
+        >
           {{ curentChoice }}/{{ prepostData.length }}
         </div>
         <!-- หลอดการทำข้อสอบ -->
-        <div
-          class="borderPercent colorPercent relative-position"
-          style="width:44%;height:22px;padding:2px"
-        >
+        <div class="col ">
           <div
-            style="margin-left:1px"
-            :style="'width:' + percent + '%'"
-            class="percent full-height"
-          ></div>
+            class="borderPercent relative-position"
+            style="height:22px;padding:2px"
+          >
+            <div
+              style="margin-left:1px"
+              :style="'width:' + percent + '%'"
+              class="percent full-height"
+            ></div>
+          </div>
         </div>
-        <div>
+
+        <div class="col-1 " style="width:120px;">
           <q-img
             src="../../public/images/clock.png"
             style="width:110px;margin-top:-10px"
@@ -27,21 +34,25 @@
         </div>
       </div>
       <!-- วนข้อสอบ -->
-      <div v-if="isloadData" class="relative-position">
-        <q-img src="../../public/images/title.png" style="width:830px">
-          <!-- คำอธิบายภาษาอังกฤษ -->
-          <span align="left" class="q-mt-sm q-pt-md q-ml-xl block">
-            {{ prepostData[curentChoice - 1].instructioneng }}
-          </span>
-          <!-- คำอธิบายภาษาไทย -->
-          <span align="left" class="q-mt-sm q-ml-xl block">{{
-            prepostData[curentChoice - 1].instructionthai
-          }}</span>
+      <div v-if="isloadData" class="relative-position q-mt-sm">
+        <q-img src="../../public/images/title.png" style="width:850px;">
+          <div class="bg-transparent text-black fit f16">
+            <div class="q-pl-lg q-pt-xs">
+              <!-- คำอธิบายภาษาอังกฤษ -->
+              <div align="left">
+                {{ prepostData[curentChoice - 1].instructioneng }}
+              </div>
+              <!-- คำอธิบายภาษาไทย -->
+              <div class="q-mt-sm" align="left">
+                {{ prepostData[curentChoice - 1].instructionthai }}
+              </div>
+            </div>
+          </div>
         </q-img>
         <!-- คำถาม -->
         <div
-          style="width:800px;margin:auto"
-          class="q-mt-md f16 container"
+          style="width:800px;margin:30px auto"
+          class=" f16 container"
           :class="type == 'pretest' ? 'text-white' : 'text-black'"
           align="left"
           v-html="prepostData[curentChoice - 1].question"
@@ -138,10 +149,16 @@ export default {
           .collection("practice")
           .where("postTest", "==", true);
       }
+
       dbRef.get().then(data => {
         console.log(data.size);
+
         data.forEach(element => {
           allData.push({ ...element.data(), id: element.id });
+        });
+
+        allData = allData.filter(x => {
+          return x.level === "7";
         });
 
         this.prepostData = allData;
@@ -171,9 +188,9 @@ export default {
   },
   created() {
     this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
-    setTimeout(() => {
-      this.dialogTimeOut = true;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.dialogTimeOut = true;
+    // }, 5000);
   }
 };
 </script>
@@ -184,7 +201,8 @@ export default {
   border-radius: 10px;
 }
 .borderPercent {
-  border: 2px solid #e57373;
+  border: 2px solid #b1654b;
+  background-color: #f8a58d;
   border-radius: 10px;
 }
 .text-dropred {

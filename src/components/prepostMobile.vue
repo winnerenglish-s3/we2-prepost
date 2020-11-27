@@ -1,6 +1,6 @@
 <template>
   <q-page align="center" class="bg-pre">
-    <div class="" style="padding-top:20px">
+    <div style="padding-top:20px;">
       <div class="row justify-center items-center q-mb-md">
         <div class="q-mr-sm text-dropred f14 " style="width:40px">
           {{ curentChoice }}/{{ prepostData.length }}
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div v-if="isloadData" class="relative-position">
-        <q-img src="../../public/images/title-m.png" style="width:320px">
+        <q-img src="../../public/images/title-m.png" style="width:320px;">
           <span align="left" class="q-mt-sm  q-ml-lg block">
             {{ prepostData[curentChoice - 1].instructioneng }}
           </span>
@@ -33,8 +33,8 @@
           }}</span>
         </q-img>
         <div
-          style="width:300px;margin:auto"
-          class="q-mt-md f16"
+          style="width:300px;margin:20px auto"
+          class="f16 text-blue-grey-1"
           :class="type == 'pretest' ? 'text-white' : 'text-black'"
           align="left"
           v-html="prepostData[curentChoice - 1].question"
@@ -161,9 +161,9 @@ export default {
   },
   created() {
     this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
-    setTimeout(() => {
-      this.dialogTimeOut = true;
-    }, 7000);
+    // setTimeout(() => {
+    //   this.dialogTimeOut = true;
+    // }, 7000);
   }
 };
 </script>
