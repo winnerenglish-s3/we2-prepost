@@ -15,11 +15,14 @@
               style="font-size:32px;padding-bottom:25px"
             >7</div>
           </div>
-          <div :class="typeClass == 'pretest' ? 'text-white' : 'text-black'">
+          <div
+            style="padding-top:45px;padding-bottom:45px"
+            :class="typeClass == 'pretest' ? 'text-white' : 'text-black'"
+          >
             <div
+              class="q-pb-md"
               style="font-weight: bold;"
               :class="$q.platform.is.desktop ? 'f20' : 'f16'"
-              class="q-pb-lg q-py-md q-pt-lg"
             >จบแบบทดสอบวัดระดับ</div>
             <div class="f16" v-if="$q.platform.is.desktop">
               <div v-if="type" class="q-pb-sm">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
@@ -41,7 +44,7 @@
           </div>
         </div>
         <!-- ปุ่มปิด -->
-        <div style="width:200px" class="q-mt-lg">
+        <div style="width:200px">
           <div @click="goto()" class="btn-start"></div>
         </div>
       </div>

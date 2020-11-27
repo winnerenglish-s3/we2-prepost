@@ -1,7 +1,7 @@
 <template>
   <q-page :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'">
     <div
-      :class="$q.platform.is.desktop ? 'absolute-center' : ''"
+      :class="$q.platform.is.desktop ? 'absolute-center f20' : ''"
       :style="$q.platform.is.desktop ? '' : 'padding-top:125px'"
     >
       <div align="center">
@@ -12,11 +12,7 @@
           <q-img style="width:320px" src="../../public/images/posttest-sign.png" />
         </div>
         <div
-          :style="
-            $q.platform.is.desktop
-              ? 'padding-top:30px;padding-bottom:41px;font-size:20px'
-              : 'padding-top:38px;padding-bottom:47px'
-          "
+          style="padding-top:45px;padding-bottom:45px"
           class="q-py-lg"
           :class="$route.params.type == 'pretest' ? 'text-white' : 'text-black'"
         >
