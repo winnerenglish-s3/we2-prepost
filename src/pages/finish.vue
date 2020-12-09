@@ -1,5 +1,8 @@
 <template>
-  <q-page :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'">
+  <q-page
+    class="q-py-md"
+    :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'"
+  >
     <div
       :class="$q.platform.is.desktop ? 'absolute-center' : ''"
       :style="$q.platform.is.desktop ? '' : 'padding-top:120px'"
@@ -7,38 +10,36 @@
       <div align="center">
         <div>
           <div class="relative-position">
-            <q-img v-if="type" style="width:250px" src="../../public/images/levelcard.png" />
-            <q-img v-if="!type" style="width:250px" src="../../public/images/best.png" />
-            <div
+            <q-img
               v-if="type"
-              class="absolute-center textShadow text-white"
-              style="font-size:32px;padding-bottom:25px"
-            >7</div>
+              style="width:250px"
+              src="../../public/images/levelcard.png"
+            >
+              <div
+                v-if="type"
+                class="absolute-center bg-transparent textShadow text-white"
+                style="font-size:32px;top:40%;"
+              >
+                41
+              </div>
+            </q-img>
+            <!-- <q-img
+              v-if="!type"
+              style="width:250px"
+              src="../../public/images/best.png"
+            /> -->
           </div>
           <div
-            style="padding-top:45px;padding-bottom:45px"
+            class="q-mt-md "
             :class="typeClass == 'pretest' ? 'text-white' : 'text-black'"
           >
-            <div
-              class="q-pb-md"
-              style="font-weight: bold;"
-              :class="$q.platform.is.desktop ? 'f20' : 'f16'"
-            >จบแบบทดสอบวัดระดับ</div>
-            <div class="f16" v-if="$q.platform.is.desktop">
-              <div v-if="type" class="q-pb-sm">กรุณากลับเข้าสู่ระบบที่ Winner English</div>
-              <div
-                v-if="!type"
-                class="q-pb-sm"
-              >คุณสามารถตรวจสอบระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
+            <div class="q-mb-lg f-medium f16">
+              <span v-if="typeClass == 'pretest'">จบแบบทดสอบก่อนเรียน</span>
+              <span v-else>จบแบบทดสอบหลังเรียน</span>
             </div>
-            <div class="f14" v-else>
-              <div v-if="type">
-                <div>กรุณารอคุณครูผู้สอนตั้งค่าระดับการเรียน</div>
-                <div>และกลับเข้าสู่ระบบที่ Winner English</div>
-              </div>
-              <div v-if="!type">
-                <div>คุณสามารถตรวจสอบคะแนน</div>
-                <div>และระดับการเรียนที่เหมาะสมได้ที่ Winner English</div>
+            <div class="f14 q-mb-lg q-pt-sm">
+              <div>
+                กรุณากลับเข้าสู่ระบบที่ Winner English
               </div>
             </div>
           </div>
@@ -57,14 +58,14 @@ export default {
   data() {
     return {
       typeClass: this.$q.sessionStorage.getItem("tt"),
-      type: true,
+      type: true
     };
   },
   methods: {
     goto() {
       window.close();
-    },
-  },
+    }
+  }
 };
 </script>
 

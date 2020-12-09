@@ -2,26 +2,23 @@
   <q-layout view="lHh Lpr lFf">
     <q-header class="bg-primary">
       <q-toolbar style="max-width:857px;width100%;margin:auto">
-        <div
-          class="text-white f16"
-          v-if="$q.sessionStorage.getItem('tt') == 'pretest'"
-        >แบบทดสอบก่อนเรียน</div>
-        <div v-else>แบบทดสอบหลังเรียน</div>
+        <div class="text-white f16" v-if="type == 'pretest'">
+          แบบทดสอบก่อนเรียน
+        </div>
+        <div class="text-white f16" v-else>แบบทดสอบหลังเรียน</div>
         <q-space></q-space>
         <div>
-          <div class="q-pt-sm absolute-right" v-if="$q.platform.is.desktop">
-            <!-- <q-img class="cursor-pointer" @click="stopMusic()" :src="musicPic" style="width:40px" />
+          <!-- <div class="q-pt-sm absolute-right" v-if="$q.platform.is.desktop">
             <q-img
-              class="q-mx-xs cursor-pointer"
-              @click="stopSound()"
-              :src="soundPic"
+              class="cursor-pointer"
+              @click="logout()"
+              :src="logoutPic"
               style="width:40px"
-            />-->
-            <q-img class="cursor-pointer" @click="logout()" :src="logoutPic" style="width:40px" />
+            />
           </div>
           <div v-else class="q-pt-sm q-pr-md absolute-right">
             <q-img @click="setting()" :src="settingPic" style="width:40px" />
-          </div>
+          </div> -->
           <div>
             <q-dialog></q-dialog>
           </div>
@@ -31,13 +28,22 @@
           <q-card flat class="bg-transparent container-login">
             <q-card-section class="bg-transparent text-dark no-padding">
               <q-img src="../../public/images/box-setting.png">
-                <div class="absolute-center bg-transparent full-width" style="margin-top:-50px">
+                <div
+                  class="absolute-center bg-transparent full-width"
+                  style="margin-top:-50px"
+                >
                   <div align="center" class="q-mb-lg">
-                    <q-img src="../../public/images/setting-word.png" style="width:52px"></q-img>
+                    <q-img
+                      src="../../public/images/setting-word.png"
+                      style="width:52px"
+                    ></q-img>
                   </div>
                   <div class="row items-center justify-between">
                     <div class="row">
-                      <q-img src="../../public/images/sound-setting.png" style="width:35px"></q-img>
+                      <q-img
+                        src="../../public/images/sound-setting.png"
+                        style="width:35px"
+                      ></q-img>
                       <div class="text-black f16 q-ml-sm">เสียงประกอบ</div>
                     </div>
                     <div @click="switching(1)">
@@ -46,7 +52,10 @@
                   </div>
                   <div class="row items-center justify-between q-mt-lg">
                     <div class="row">
-                      <q-img src="../../public/images/music-setting.png" style="width:30px"></q-img>
+                      <q-img
+                        src="../../public/images/music-setting.png"
+                        style="width:30px"
+                      ></q-img>
                       <div class="text-black f16 q-ml-sm">เพลง</div>
                     </div>
                     <div @click="switching(2)">
@@ -56,10 +65,16 @@
                 </div>
                 <span class="row block" align="center" style="margin-top:230px">
                   <span>
-                    <q-img src="../../public/images/leave-btn.png" style="width:125px"></q-img>
+                    <q-img
+                      src="../../public/images/leave-btn.png"
+                      style="width:125px"
+                    ></q-img>
                   </span>
                   <span @click="closeDialogSetting()">
-                    <q-img src="../../public/images/black-btn.png" style="width:125px"></q-img>
+                    <q-img
+                      src="../../public/images/black-btn.png"
+                      style="width:125px"
+                    ></q-img>
                   </span>
                 </span>
               </q-img>
@@ -126,7 +141,7 @@ export default {
       soundPic: require("../../public/images/sound-icon.png"),
       settingPic: require("../../public/images/setting-icon.png"),
       switchPic1: require("../../public/images/swit-open.png"),
-      switchPic2: require("../../public/images/swit-close.png"),
+      switchPic2: require("../../public/images/swit-close.png")
     };
   },
   methods: {
@@ -173,10 +188,10 @@ export default {
     },
     closeDialogSetting() {
       this.isDialogSetting = false;
-    },
+    }
   },
   mounted() {
     this.$q.sessionStorage.set("tt", this.$route.params.type);
-  },
+  }
 };
 </script>

@@ -1,15 +1,24 @@
 <template>
-  <q-page align="center" :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'">
-    <div style="padding-top:20px">
-      <div class="row items-center q-mb-md container-main">
+  <q-page
+    align="center"
+    :class="$route.params.type == 'pretest' ? 'bg-pre' : 'bg-post'"
+    class="q-pb-md"
+  >
+    <div style="padding-top:20px" class="container-main-pc">
+      <div class="row items-center  ">
         <div
           class="col-1 q-mr-sm text-dropred f14"
           align="left"
           style="width:45px"
-        >{{ curentChoice }}/{{ prepostData.length }}</div>
+        >
+          {{ curentChoice }}/{{ prepostData.length }}
+        </div>
         <!-- หลอดการทำข้อสอบ -->
         <div class="col">
-          <div class="borderPercent relative-position" style="height:22px;padding:2px">
+          <div
+            class="borderPercent relative-position"
+            style="height:22px;padding:2px"
+          >
             <div
               style="margin-left:1px"
               :style="'width:' + percent + '%'"
@@ -19,7 +28,10 @@
         </div>
 
         <div class="col-1" style="width:120px;">
-          <q-img src="../../public/images/clock.png" style="width:110px;margin-top:-10px"></q-img>
+          <q-img
+            src="../../public/images/clock.png"
+            style="width:110px;margin-top:-10px"
+          ></q-img>
         </div>
       </div>
       <!-- วนข้อสอบ -->
@@ -28,14 +40,18 @@
           <div class="bg-transparent text-black fit f16">
             <div class="q-pl-lg q-pt-xs">
               <!-- คำอธิบายภาษาอังกฤษ -->
-              <div align="left">{{ prepostData[curentChoice - 1].instructioneng }}</div>
+              <div align="left">
+                {{ prepostData[curentChoice - 1].instructioneng }}
+              </div>
               <!-- คำอธิบายภาษาไทย -->
-              <div class="q-mt-sm" align="left">{{ prepostData[curentChoice - 1].instructionthai }}</div>
+              <div class="q-mt-sm" align="left">
+                {{ prepostData[curentChoice - 1].instructionthai }}
+              </div>
             </div>
           </div>
         </q-img>
         <!-- คำถาม -->
-        <div class="container-main" style="padding-top:17px">
+        <div style="padding-top:17px">
           <div
             class="f16"
             :class="type == 'pretest' ? 'text-white' : 'text-black'"
@@ -74,11 +90,16 @@
                 style="font-size:24px"
                 align="center"
                 class="text-weight-bold text-dark relative-position q-px-md"
-              >หมดเวลา !!!</div>
+              >
+                หมดเวลา !!!
+              </div>
               <div
                 align="center"
                 class="text-dark f16 relative-position q-px-md q-mt-md"
-              >ทำแบบทดสอบก่อนเรียน</div>
+              >
+                <span v-if="type == 'pretest'">ทำแบบทดสอบก่อนเรียน</span>
+                <span v-else>ทำแบบทดสอบหลังเรียน</span>
+              </div>
             </div>
             <div
               style="width:100%;bottom:30px; z-index:1000"
@@ -109,7 +130,7 @@ export default {
       perOfChoice: "", //percent แต่ละข้อ
       clock: 0, // เวลา
       dialogTimeOut: false, //เปิดปิด dialog นาฬิกา
-      isloadData: false, //บอกว่าโหลดข้อมูลจาก Database เสร็จแล้ว
+      isloadData: false //บอกว่าโหลดข้อมูลจาก Database เสร็จแล้ว
     };
   },
   methods: {
@@ -131,14 +152,14 @@ export default {
           .where("postTest", "==", true);
       }
 
-      dbRef.get().then((data) => {
+      dbRef.get().then(data => {
         console.log(data.size);
 
-        data.forEach((element) => {
+        data.forEach(element => {
           allData.push({ ...element.data(), id: element.id });
         });
 
-        allData = allData.filter((x) => {
+        allData = allData.filter(x => {
           return x.level === "7";
         });
 
@@ -165,14 +186,14 @@ export default {
     // กดยืนยัน ใน Dialog
     confirm() {
       this.$router.push("/finish/" + this.type);
-    },
+    }
   },
   created() {
     this.loadPrePostData(); //เรียก function โหลดข้อมูล prepost
-    // setTimeout(() => {
-    //   this.dialogTimeOut = true;
-    // }, 5000);
-  },
+    setTimeout(() => {
+      this.dialogTimeOut = true;
+    }, 5000);
+  }
 };
 </script>
 

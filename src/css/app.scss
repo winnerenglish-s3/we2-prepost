@@ -4,8 +4,17 @@
   src: url("../../public/fonts/Sarabun-Regular.ttf");
 }
 
+@font-face {
+  font-family: Sarabun-m;
+  src: url("../../public/fonts/Sarabun-Medium.ttf");
+}
+
 body {
   font-family: Sarabun;
+}
+
+.f-medium {
+  font-family: Sarabun-m;
 }
 
 .f12 {
@@ -36,7 +45,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: scroll;
-  background-position: center;
+  background-position: top;
 }
 .bg-post {
   background-image: url("../../public/images/bg-post.png");
@@ -49,7 +58,13 @@ body {
   width: 320px;
 }
 
-.container-main {
-  width: 850px;
+.container-main-pc {
   margin: auto;
+  width: 850px;
+}
+
+.container-main-mobile {
+  margin: auto;
+  max-width: 320px;
+  width: 95%;
 }
